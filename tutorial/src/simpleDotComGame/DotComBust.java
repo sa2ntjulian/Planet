@@ -34,5 +34,13 @@ public class DotComBust {
 			dotComToSet.setLocationCells(newLocation);
 		}
 	}
-
+	
+	private void startPlaying() {
+		while (!dotComsList.isEmpty()) {
+			String userGuess = helper.getUserInput("Enter a guess");
+			checkUserGuess(userGuess);
+		} // end of while
+		
+		finishGame();
+	}
 }
