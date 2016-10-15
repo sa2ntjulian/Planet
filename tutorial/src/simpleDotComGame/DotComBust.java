@@ -5,8 +5,8 @@ import java.util.ArrayList;
 public class DotComBust {
 	
 	private GameHelper helper = new GameHelper();
-	private ArrayList<DotCom> dotComList = new ArrayList<DotCom>();
-	private numOfGuesses = 0;
+	private ArrayList<DotCom> dotComsList = new ArrayList<DotCom>();
+	private int numOfGuesses = 0;
 
 	public static void main(String[] args) {
 		DotComBust game = new DotComBust();
@@ -21,15 +21,15 @@ public class DotComBust {
 		two.setName("eToys.com");
 		DotCom three = new DotCom();
 		three.setName("Go2.com");
-		dotComList.add(one);
-		dotComList.add(two);
-		dotComList.add(three);
+		dotComsList.add(one);
+		dotComsList.add(two);g	
+		dotComsList.add(three);
 		
 		System.out.println("Your goal is to sink three dot com.");
 		System.out.println("Pets.com, eToys.com, Go2.com");
 		System.out.println("Try to sink them all in the fewest number of guesses");
 		
-		for (DotCom dotComToSet : dotComList) {
+		for (DotCom dotComToSet : dotComsList) {
 			ArrayList<String> newLocation = helper.placeDotCom(3);
 			dotComToSet.setLocationCells(newLocation);
 		}
@@ -42,5 +42,33 @@ public class DotComBust {
 		} // end of while
 		
 		finishGame();
+	}
+	
+	private void checkUserGuess(String userGuess) {
+		numOfGuesses++;
+		String result = "miss";
+		
+		for (DotCom dotComToTest : dotComsList) {
+			result = dotComToTest.checkYourSelf(userGuess);
+			if (result.equals("hit")) {
+				break;
+			}
+			if (result.equals("kill")) {
+				dotComsList.remove(dotComToTest);
+				break;
+			}
+		}
+		System.out.println(result);
+	}
+	
+	private void finishGame() {
+		System.out.println("All Dot Coms are dead! Your stock is now worthless.");
+		if (numOfGuesses <= 18) {
+			System.out.println("It only took you " + numOfGuesses + " guesses.");
+			System.out.println("You got out before your options sank.");
+		} else {
+			System.out.println("Took you long enough " + numOfGuesses + " guessess");
+			System.out.println("Fish are dancing with your options.");
+		}
 	}
 }
