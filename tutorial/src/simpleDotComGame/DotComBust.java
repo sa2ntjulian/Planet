@@ -22,7 +22,7 @@ public class DotComBust {
 		DotCom three = new DotCom();
 		three.setName("Go2.com");
 		dotComsList.add(one);
-		dotComsList.add(two);g	
+		dotComsList.add(two);
 		dotComsList.add(three);
 		
 		System.out.println("Your goal is to sink three dot com.");
